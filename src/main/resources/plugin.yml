@@ -1,0 +1,6 @@
+name: ReactantExtraServiceTest
+main: io.github.mg138.service.reactant.ReactantExtraService
+version: 1.16
+softdepend:
+    - MythicMobs
+    - ProtocolLib
