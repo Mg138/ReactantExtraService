@@ -18,12 +18,11 @@ class PacketService : LifeCycleHook {
         private fun PacketAdapter.register() = protocolManager.addPacketListener(this)
 
         class Registering(private val packetAdapterService: PacketAdapterService) {
-            fun onReceiving(
-                type: PacketType,
+            fun PacketType.onReceiving(
                 priority: ListenerPriority = ListenerPriority.NORMAL,
                 vararg options: ListenerOptions,
                 listener: (PacketEvent) -> Unit
-            ) = packetAdapterService.onReceiving(listener, setOf(type), priority, *options)
+            ) = packetAdapterService.onReceiving(listener, setOf(this), priority, *options)
 
             fun onReceiving(
                 types: Iterable<PacketType>,
@@ -32,12 +31,11 @@ class PacketService : LifeCycleHook {
                 listener: (PacketEvent) -> Unit
             ) = packetAdapterService.onReceiving(listener, types, priority, *options)
 
-            fun onSending(
-                type: PacketType,
+            fun PacketType.onSending(
                 priority: ListenerPriority = ListenerPriority.NORMAL,
                 vararg options: ListenerOptions,
                 listener: (PacketEvent) -> Unit
-            ) = packetAdapterService.onSending(listener, setOf(type), priority, *options)
+            ) = packetAdapterService.onSending(listener, setOf(this), priority, *options)
 
             fun onSending(
                 types: Iterable<PacketType>,
